@@ -1,0 +1,69 @@
+// === FILE: index.html ===
+
+<!DOCTYPE html><html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lonz Flawls Aura</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  </head>
+  <body class="bg-gray-900 text-white font-poppins">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>// === FILE: tailwind.config.js ===
+
+module.exports = { content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"], theme: { extend: { colors: { aura: "#25c3b5", charcoal: "#2f2f2f", }, fontFamily: { poppins: ["Poppins", "sans-serif"], }, }, }, plugins: [], };
+
+// === FILE: postcss.config.js ===
+
+module.exports = { plugins: { tailwindcss: {}, autoprefixer: {}, }, };
+
+// === FILE: src/main.jsx ===
+
+import React from "react"; import ReactDOM from "react-dom/client"; import App from "./App.jsx"; import "./index.css";
+
+ReactDOM.createRoot(document.getElementById("root")).render( <React.StrictMode> <App /> </React.StrictMode> );
+
+// === FILE: src/index.css ===
+
+@tailwind base; @tailwind components; @tailwind utilities;
+
+body { @apply bg-gray-900 text-white font-poppins; }
+
+// === FILE: src/App.jsx ===
+
+import React from "react"; import Hero from "./components/Hero"; import Routine from "./components/Routine"; import Shop from "./components/Shop"; import Reviews from "./components/Reviews"; import Contact from "./components/Contact";
+
+export default function App() { return ( <div> <Hero /> <Routine /> <Shop /> <Reviews /> <Contact /> </div> ); }
+
+// === FILE: src/components/Hero.jsx ===
+
+export default function Hero() { return ( <section className="min-h-screen flex flex-col items-center justify-center text-center px-6 bg-charcoal"> <h1 className="text-5xl font-bold text-aura mb-4">Lonz Flawls Aura</h1> <p className="text-xl text-white/80 max-w-xl"> Limitless Glow. Authentic Care. Experience luxury skincare designed for bold radiance and everyday beauty. </p> </section> ); }
+
+// === FILE: src/components/Routine.jsx ===
+
+export default function Routine() { return ( <section className="py-16 px-6 bg-gray-800"> <h2 className="text-3xl font-semibold text-aura mb-6 text-center">Glow Routine ✨</h2> <ul className="space-y-4 max-w-xl mx-auto"> <li>🧼 Cleanse with Glow Soap</li> <li>💧 Apply Glow Lotion to entire body</li> <li>☀️ Use Whitening Oil on dark areas</li> <li>🌙 Repeat routine at night with Whitening Soap & Cream</li> </ul> </section> ); }
+
+// === FILE: src/components/Shop.jsx ===
+
+const products = [ { name: "Glow Soap", price: "R129", desc: "Fades marks, hydrates skin" }, { name: "Whitening Cream", price: "R189", desc: "Targets acne & spots" }, { name: "Glow Lotion", price: "R159", desc: "Hydrates, smoothens, glows" }, ];
+
+export default function Shop() { return ( <section className="py-16 px-6 bg-gray-900"> <h2 className="text-3xl font-semibold text-aura mb-6 text-center">Shop Now</h2> <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto"> {products.map((product, i) => ( <div
+key={i}
+className="bg-charcoal p-6 rounded-xl text-center shadow-lg hover:scale-105 transition"
+> <h3 className="text-xl text-aura font-semibold mb-2">{product.name}</h3> <p className="text-white/80 mb-2">{product.desc}</p> <span className="block text-aura font-bold">{product.price}</span> </div> ))} </div> </section> ); }
+
+// === FILE: src/components/Reviews.jsx ===
+
+const reviews = [ { name: "Nokuthula M.", quote: "My skin feels baby soft. I'm glowing!" }, { name: "Thandi D.", quote: "Dark marks are disappearing. Amazing results!" }, { name: "Zanele R.", quote: "I’m obsessed with the scent and softness!" }, ];
+
+export default function Reviews() { return ( <section className="py-16 px-6 bg-gray-800"> <h2 className="text-3xl text-aura font-semibold mb-6 text-center">Customer Reviews 💖</h2> <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto"> {reviews.map((r, i) => ( <div key={i} className="bg-gray-900 p-6 rounded-xl"> <p className="italic text-white/70">“{r.quote}”</p> <p className="mt-3 text-aura font-semibold">– {r.name}</p> </div> ))} </div> </section> ); }
+
+// === FILE: src/components/Contact.jsx ===
+
+export default function Contact() { return ( <section className="py-16 px-6 bg-charcoal text-center"> <h2 className="text-3xl text-aura font-semibold mb-6">Contact & Support</h2> <p className="text-white/80 mb-4">Email us at:</p> <a
+href="mailto:hello@lonzaura.co.za"
+className="text-aura underline text-lg hover:text-aura/80"
+> hello@lonzaura.co.za </a> </section> ); }
+
